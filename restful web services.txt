@@ -1,0 +1,373 @@
+﻿
+Resful Web API
+===============
+1. Introduction
+================
+REST (Representational State Transfer) is an architectural pattern for developing web services. 
+
+REST is a popular choice for web services development projects since it is lightweight, stateless, and therefore easily scalable. 
+
+REST uses HTTP verbs (POST, GET, PUT, DELETE) for performing CRUD operations (Create/Read/Update/Delete) on web resources. 
+
+GET
+POST
+PUT
+PATCH
+DELETE
+OPTIONS
+HEAD
+
+
+Platform supports to develop Restful WEB API
+
+Java 
+.net
+Node JS
+PHP
+Python
+
+
+Implementaion 
+1.Spring Boot
+2.JAX-RS
+
+
+http://localhost:8080/spring-boot-ems/employees        :GET     : get all employees
+http://localhost:8080/spring-boot-ems/employees/101    :GET     : get     employee with id 101
+http://localhost:8080/spring-boot-ems/employees/101    :DELETE  : delete  employee with id 101
+http://localhost:8080/spring-boot-ems/employees/101    :PUT     : update  employee with id 101
+http://localhost:8080/spring-boot-ems/employees/101    :PATCH   : update  employee with id 101
+http://localhost:8080/spring-boot-ems/employees        :POST    : add     employee
+
+difference is that when you want to update a resource with PUT request, you have to send the full payload as the request whereas with PATCH, you only send the parameters which you want to update.
+
+Resources
+
+
+url      method      mapping                                                           new style
+=========================================================================================================
+/hello   GET         @RequestMapping(value="/hello",method=RequestMethod.GET)       @GetMapping("/hello")
+/hello   POST        @RequestMapping(value="/hello",method=RequestMethod.POST)      @PostMapping("/hello")
+/hello   DELETE      @RequestMapping(value="/hello",method=RequestMethod.DELETE)    @DeleteMapping("/hello")
+/hello   PUT         @RequestMapping(value="/hello",method=RequestMethod.PUT)       @PutMapping("/hello")
+/hello   PATCH       @RequestMapping(value="/hello",method=RequestMethod.PATCH)     @PatchMapping("/hello")
+
+
+@ResponseBody=>Server to CLient=>Java Object to JSON or XML=>Accept=application/json
+@RequestBody=>Client to Server=>JSON or XMl to Java Object to =>Content-type=application/json
+
+
+client--request--server
+server--response--client 
+
+
+MIME 
+
+Content-type;
+
+
+/getEmployeById
+/deleteEmployeeById
+/updateEmployeeById
+/addEmployee
+
+
+
+
+JAXRS
+======
+Java API for RESTful Web Services (or JAX-RS) is a Java EE API specification for developing REST-style web services. The API includes the annotations defined in JSR-311 and fall into the following categories:
+
+URI Mapping for locating resources.
+HTTP Methods for manipulating resources.
+Data Formats for producing and consuming the textual representations of resources.
+Request Parameters for binding parameters to Java types.
+Exceptions Mappers for catching application exceptions and returning custom HTTP responses.
+There are a few implementations from which to choose when developing JAX-RS web services.  These include:
+
+RESTEasy
+Apache CXF
+Jersey
+
+Jersey serves as the JAX-RS reference implementation. 
+It is an open-source production-quality framework that expands on the JAX-RS toolkit.
+It is part of the Glassfish JEE server stack but can be deployed on other application servers.
+
+Creating a RESTful web service using Jersey is simple when using Spring Boot as the platform.
+ The amount of configuration required is small when you use the Spring Boot Jersey starter dependency in your project, as will be demonstrated in this example.
+
+
+==============================================================================
+Spring Annotation	                               JAX-RS Annotation
+===============================================================================
+@RequestMapping(path = "/troopers")	                @Path("/troopers")
+@RequestMapping(method = RequestMethod.POST)	    @POST
+@RequestMapping(method = RequestMethod.GET)	        @GET
+@RequestMapping(method = RequestMethod.DELETE)	    @DELETE
+@RequestMapping(method = RequestMethod.PUT)	        @PUT
+@ResponseBody	                                    N/A		--
+@RequestBody	                                    N/A
+
+@PathVariable("/{id}")	                            @PathParam("id")
+@RequestParam("xyz")	                            @QueryParam('xyz")
+@RequestParam(value="xyz")	                        @FormParam(“xyz”)
+
+@RequestMapping(produces = {"application/json"})	@Produces("application/json")
+@RequestMapping(consumes = {"application/json"})	@Consumes("application/json")
+
+@PathVariable: It is used to extract the values from the URI. It is most suitable for the RESTful web service, where the URL contains a path variable. We can define multiple @PathVariable in a method.
+
+@RequestParam: It is used to extract the query parameters form the URL. It is also known as a query parameter. It is most suitable for web applications. It can specify default values if the query parameter is not present in the URL.
+
+
+Client                                      Server 
+=========
+Content-Type=application/json               Accept  @Consumes("application/json")
+
+Accept =application/json                    Content-Type  @Produces("application/json")  
+
+
+HTTP Status codes
+==================
+https://www.restapitutorial.com/httpstatuscodes.html
+200   : OK
+404   : NOT FOUND
+500   : INTERNAL SERVER ERROR
+403   : NOT AUTHORIZED     type=Forbidden, status=403)
+401   : NOT AUTHENTICATED  type=Unauthorized, status=401
+405   : METHOD NOT ALLOWED
+415   : Unsupported Media Type 
+406   : Not Accepted
+
+https://www.infosys.com/digital/insights/documents/restful-web-services.pdf
+
+Rest is an arch style,which provides direction for building distributed and loosely coupled services.
+It is not linked to any particular platform or technology. is is an idea to develop services to function similar to the web.
+
+resources
+
+
+https://jsonplaceholder.typicode.com/
+
+Resources
+
+JSONPlaceholder comes with a set of 6 common resources:
+
+/posts	    100 posts
+/comments	500 comments
+/albums	    100 albums
+/photos	    5000 photos
+/todos	    200 todos
+/users	    10 users
+
+http://localhost:8080/spring-boot-ems/employees        :GET     : get all employees
+http://localhost:8080/spring-boot-ems/employees/101    :GET     : get     employee with id 101
+http://localhost:8080/spring-boot-ems/employees/101    :DELETE  : delete  employee with id 101
+http://localhost:8080/spring-boot-ems/employees/101    :PUT     : update  employee with id 101
+http://localhost:8080/spring-boot-ems/employees/101    :PATCH   : update  employee with id 101
+http://localhost:8080/spring-boot-ems/employees        :POST    : add     employee
+
+
+All HTTP methods are supported.
+==============================
+
+GET   	/posts
+GET	    /posts/1
+GET	    /posts/1/comments
+GET	    /comments?postId=1--
+GET	    /posts?userId=1
+POST	/posts
+PUT	    /posts/1
+PATCH	/posts/1
+DELETE	/posts/1
+
+
+Resources
+http://localhost:8080/spring-boot-ems/employees/101 --@Pathvariable supported by GET,POST,DELETE,PATCH
+http://localhost:8080/spring-boot-ems/employees?empid=101 --@Requestparam @QueryString is supprted by GET 
+
+Representation:
+XML or JSON format-- provide with @Produces and @Consumes 
+
+jersey dependency
+Now we have a JAX-RS resource and we want to access it from spring boot application which include Jersey dependency. Let’s register this resource as Jersey resource.
+
+Day2
+====
+Swagger2 
+========
+Swagger2 is an open source project used to generate the REST API documents for RESTful web services.
+It provides a user interface to access our RESTful web services via the web browser.
+
+        1.Develop API
+		2.Interact with APIS
+        3.Documenting APIS -- consumes by other users, endpoints, methods , response code , 
+if any version changes, new feature addedc documentation need to change.
+
+
+To enable the Swagger2 in Spring Boot application, you need to add the following dependencies in our build configurations file.
+
+
+<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger-ui</artifactId>
+    <version>2.7.0</version>
+</dependency>
+
+
+<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger2</artifactId>
+    <version>2.7.0</version>
+</dependency>
+
+
+Now, add the @EnableSwagger2 annotation in your main Spring Boot application. The @EnableSwagger2 annotation is used to enable the Swagger2 for your Spring Boot application.
+
+After running Spring Boot application
+
+Now, hit the URL in your web browser and see the Swagger API functionalities.
+
+http://localhost:8080/swagger-ui.html
+
+
+if we dont specify method then it will run all methods.
+
+@COntroller
+@ApiIgnore
+public class HelloController
+{
+	@RequestMapping("/")
+	public String home()
+	{
+		return "redirect:swagger-ui.html";
+		}
+
+}
+
+versioning
+https://dzone.com/articles/versioning-restful-services-with-spring-boot
+rest client debugger for chrome
+
+
+----
+day 3:
+Microservices are implemented through REST API http protocol
+.net , java --spring / spring Boot framework, nodejs --express framework, python  --jango framework
+java paltform 
+spring boot technology
+
+1.1 What is HATEOAS?
+=========================
+HATEOAS is known as Hypermedia As The Engine Of Application State.
+Documentation abt the services avilable on the website.
+
+ 
+It is used to present the REST API information to the client allowing better API understanding and documentation.
+With each request returned from the server it tells the user what interactions he/she can do next as well as
+where he/she can navigate to.
+It is the final level of REST API and implements the standard verbs of POST, GET, PUT, PATCH, and DELETE.
+
+links are hypermedia
+
+Types of Media's 
+                            1   2 3 4 5...............10
+		Linear    :  start =============================>end      in sequence ex cassate player
+		Hypermedia: random selection with links ex CD Player  href   
+
+
+MIME =>Multipuropose Internet Mail Extensions
+
+
+Content-Type
+Accept
+
+application/xml                                      application/json
+===============                                      ================== 
+<employee>                                           {id:101,name:"Sachin",salary:12000}
+<id>101</id>
+<name>Sachin</name>
+<salary>12000</salary>
+</employee>
+
+Java representation of Data XML				JSOn
+
+class Employee{                                         
+private int id;
+private String name;                               Employee e=new Employee(101,"Sachin",12000);  
+private double salary;
+}
+
+JSON is better than XML
+
+JAXB => Marshling and Unmarshling
+          Java to XML and XML to Java
+JACKSON maven dependency==> is used for marshaling and unmarshaling 		  
+		  
+@XmlRootElement		  
+		  
+JACKSON => Java to JSON and JSON to Java		  
+
+========================================
+Demo On Hateoas 
+add the dependency Spring  HATEOAS
+
+
+http://localhost:8080
+
+hateoas rel values ---self , href
+===============================================
+https://www.baeldung.com/lombok-ide
+lombok is used to reduce the dependencies
+@Getter @Setter --classand method
+
+@NoArgsConstructor
+
+@Entity
+@Getter @Setter @NoArgsConstructor 
+// <--- THIS is it
+public 
+class User implements Serializable 
+{
+ 
+    
+private @Id Long id; // will be set when persisting
+ 
+ 
+  private String firstName;
+   
+ private String lastName;
+    private int age;
+ 
+   
+ public User(String firstName, String lastName, int age) {
+ 
+       this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    
+}
+
+}
+
+Lazy getter-
+
+Spring Boot Error handling with error control interface
+web dependency
+Spring Boot custome error page
+adding custom error other than 404
+@Data
+https://www.baeldung.com/lombok-ide
+add
+download the jar
+java -jar lombok-1.18.4.jar
+
+
+===================================================
+
+-javaagent:E:\New Volume Manisha E Drive\pradeepspring\sts-4.1.2.RELEASE\lombok.jar
+
+
+

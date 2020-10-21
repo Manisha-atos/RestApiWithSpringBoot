@@ -1,0 +1,124 @@
+WebService
+service --- facility 
+viniya 
+
+webservice
+
+e-comm--- payment 
+irctc --- payment
+domin--payment 
+
+bill desk --  
+
+SOA ---
+
+yellow page ----- 
+
+provider --- UDDI -- consumer
+
+Employee --- addEmpService DelEmpServ uodateEmpSer 
+delEmpService
+
+SOAP RestFul API
+stateless 
+
+state
+
+emp e=
+e.em
+
+registrion http protocal  stateless  
+
+Restful API---  JSON file 
+
+XML & JSON file 
+
+webservice --- application 
+
+http  get post 
+get post put delete trace patch 
+
+maven -- dependen  --- remote reposit
+
+j2ee based application
+
+
+4 layers 
+
+data layer-- data source collection ,sql, nosql
+
+DAO layer-- access the 
+
+service --BL 
+
+presentation 
+
+Employee --- get setter
+
+Map-- Datasource 
+
+DAO
+map methods CRUD
+
+
+services --dao  
+
+presentation --service----addEmployee-- Map 
+
+Annonations
+@Component
+@Respository
+@Service
+@Autowire
+@Qualifier
+@Controller
+@RequestMapping
+
+
+model
+view controller
+
+RestAPI
+
+Spring 
+
+
+@Controller  @RestCon
+
+@Req   (method="get")		@GetMappin
+
+RestAPI --->service-->dao-->map (put,remove,get)
+
+http://localhost:1010/spring-boot-ems/employees  GET getEmployees()
+
+http://localhost:1010/spring-boot-ems/employees/33138  GET getEmployee
+http://localhost:1010/spring-boot-ems/employees?Employeeid=33138  
+
+http://localhost:1010/spring-boot-ems/employee       post addEmployee()
+
+http://localhost:1010/spring-boot-ems/employees/33138  delete deleteEmployee()
+
+request----->server---json --content-type --application/json
+
+response 
+
+json xml  
+
+
+content type
+application
+
+client --req--server   content-type
+server--repo--client   Accept 
+
+
+
+
+
+
+
+
+
+
+
+
